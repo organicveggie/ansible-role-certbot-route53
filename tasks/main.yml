@@ -1,0 +1,10 @@
+---
+- import_tasks: install.yml
+  tags:
+    - certbot
+    - certbot:install
+
+- import_tasks: issue.yml
+  tags:
+    - certbot
+    - certbot:issue

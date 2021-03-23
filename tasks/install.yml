@@ -1,0 +1,24 @@
+---
+- name: Install snap core
+  community.general.snap:
+    name: core
+
+- name: Remove Certbot from apt
+  ansible.builtin.apt:
+    name: certbot
+    state: absent
+
+- name: Install Certbot via snap
+  community.general.snap:
+    name: certbot
+    classic: true
+  register: certbot_installed
+
+- name: Confirm plugin containment level
+  ansible.builtin.command: snap set certbot trust-plugin-with-root=ok
+  when: certbot_installed
+
+- name: Install Certbot Route53 plugin
+  community.general.snap:
+    name: certbot-dns-route53
+    state: present

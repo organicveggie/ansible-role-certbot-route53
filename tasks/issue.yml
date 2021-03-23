@@ -1,0 +1,27 @@
+---
+- name: Create AWS credentials directory
+  ansible.builtin.file:
+    path: /root/.aws
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Create AWS credentials file
+  ansible.builtin.template:
+    src: templates/aws.conf.j2
+    dest: /root/.aws/config
+    owner: root
+    group: root
+    mode: '0600'
+
+- name: Acquire certificate
+  ansible.builtin.command: >-
+    /snap/bin/certbot certonly
+    --noninteractive --agree-tos 
+    --email {{ certbot_admin_email }}
+    --dns-route53
+    -d {{ certbot_domain_name }}
+
+- name: Setup auto-renew
+  ansible.builtin.command: /snap/bin/certbot renew
