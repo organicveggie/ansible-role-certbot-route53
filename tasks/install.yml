@@ -1,4 +1,9 @@
 ---
+- name: Install snapd
+  ansible.builtin.apt:
+    name: snapd
+    state: present
+
 - name: Install snap core
   community.general.snap:
     name: core
