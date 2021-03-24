@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  role_name: certbot-route53
+  author: Sean Laurent
+  description: Role to install Certbot, acquire a certificate and set it up for renewal.
+  license: Apache
+  min_ansible_version: 2.8
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+  galaxy_tags:
+    - acme
+    - letsencrypt
+    - certbot
+    - route53
+
+dependencies: []
