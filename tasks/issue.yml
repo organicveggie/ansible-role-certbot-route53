@@ -22,6 +22,7 @@
     --email {{ certbot_admin_email }}
     --dns-route53
     -d {{ certbot_domain_name }}
+    -d '*.{{ certbot_domain_name }}'
 
 - name: Setup auto-renew
   ansible.builtin.command: /snap/bin/certbot renew
